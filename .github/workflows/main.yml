@@ -38,19 +38,16 @@ jobs:
           DB_USER: '${{ env.POSTGRES_USER }}'
           DB_PASS: '${{ env.POSTGRES_PASSWORD }}'
         run: >
-         # The SQL command to update the table. You should replace this with
-          your actual SQL command.
+         # The SQL command to update the table. You should replace this with your actual SQL command.
 
           SQL_COMMAND="INSERT INTO public.people (First_Name, Last_Name) VALUES
           ('Kanan', 'Jarrus');"
 
-          # Use PGPASSWORD to pass the password, then run psql to execute your
-          SQL command
+          # Use PGPASSWORD to pass the password, then run psql to execute your SQL command
 
           export PGPASSWORD=$DB_PASS
 
-          psql -h "$DB_HOST" -p "$DB_PORT" -d "$DB_NAME" -U "$DB_USER" -c
-          "$SQL_COMMAND"
+          psql -h "$DB_HOST" -p "$DB_PORT" -d "$DB_NAME" -U "$DB_USER" -c "$SQL_COMMAND"
 
           # Unset the PGPASSWORD after use for security reasons
 
