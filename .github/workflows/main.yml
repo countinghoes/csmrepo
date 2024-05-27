@@ -30,10 +30,6 @@ jobs:
           }}' | jq -r
           'to_entries|map("POSTGRES_\(.key|ascii_upcase)=\(.value|tostring)")|.[]'
           >> $GITHUB_ENV
-      - name: Install PostgreSQL Client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y postgresql-client
       - name: Update PostgreSQL Table
         env:
           DB_NAME: postgres
@@ -46,7 +42,7 @@ jobs:
           your actual SQL command.
 
           SQL_COMMAND="INSERT INTO public.people (First_Name, Last_Name) VALUES
-          ('Berry', 'Tzakala');"
+          ('Kanan', 'Jarrus');"
 
           # Use PGPASSWORD to pass the password, then run psql to execute your
           SQL command
