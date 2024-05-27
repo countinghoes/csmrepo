@@ -8,6 +8,9 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - name: Set up environment to ignore SSL warnings
+        run: echo "NODE_TLS_REJECT_UNAUTHORIZED=0" >> $GITHUB_ENV
+        
       - name: Fetch dynamic secrets from Akeyless
         id: fetch-dynamic-secrets
         uses: akeyless-community/akeyless-github-action@v1.0.1
@@ -20,7 +23,7 @@ jobs:
           export-secrets-to-outputs: true
           export-secrets-to-environment: true
           api-url: 'https://192.168.2.209/akeyless-api/v2/'
-          NODE_TLS_REJECT_UNAUTHORIZED: 0
+        
       - name: Export Secrets to Environment
         run: >
           echo '${{ steps.fetch-dynamic-secrets.outputs.postgres_dynamic_secret
