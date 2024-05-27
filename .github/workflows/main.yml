@@ -33,7 +33,7 @@ jobs:
       - name: Update PostgreSQL Table
         env:
           DB_NAME: postgres
-          DB_HOST: “34.31.231.250”
+          DB_HOST: 34.31.231.250
           DB_PORT: '5432'
           DB_USER: '${{ env.POSTGRES_USER }}'
           DB_PASS: '${{ env.POSTGRES_PASSWORD }}'
