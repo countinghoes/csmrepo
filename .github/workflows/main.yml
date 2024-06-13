@@ -25,8 +25,8 @@ jobs:
       - name: Export Secrets to Environment
         run: >
           echo '${{ steps.fetch-dynamic-secrets.outputs.postgres_dynamic_secret
-          }}' | jq -r
-          'to_entries|map("POSTGRES_\(.key|ascii_upcase)=\(.value|tostring)")|.[]'
+          }}' | jq –r 
+          'to_entries|map("POSTGRES_\(.key|ascii_upcase)=\(.value|tostring)")|.[]’ 
           >> $GITHUB_ENV
       - name: Update PostgreSQL Table
         env:
@@ -36,9 +36,8 @@ jobs:
           DB_USER: '${{ env.POSTGRES_USER }}'
           DB_PASS: '${{ env.POSTGRES_PASSWORD }}'
         run: >
-         # The SQL command to update the table. You should replace this with your actual SQL command.
-          SQL_COMMAND="INSERT INTO public.people (First_Name, Last_Name) VALUES
-          ('Ivan', 'Tan');"
+          # The SQL command to update the table. You should replace this with your actual SQL command.
+          SQL_COMMAND="INSERT INTO public.people (First_Name, Last_Name) VALUES ('cap', 'rocinante');"
           # Use PGPASSWORD to pass the password, then run psql to execute your SQL command
           export PGPASSWORD=$DB_PASS
           psql -h "$DB_HOST" -p "$DB_PORT" -d "$DB_NAME" -U "$DB_USER" -c "$SQL_COMMAND"
